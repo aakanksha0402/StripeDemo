@@ -25,5 +25,13 @@
   <%= @customer.stripe_customer_id %>
 </p>
 
+<b>Card Details</b>
+<ul>
+  <% @customer.cards.each do |card| %>
+    <div class="field">
+      <li><%= card.to_s %></li>
+    </div>
+  <% end %>
+</ul>
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

@@ -1,4 +1,6 @@
 class Plan < ApplicationRecord
+  has_many :customers
+  
   require "stripe"
 
   validates :name, :amount, :interval, presence: true

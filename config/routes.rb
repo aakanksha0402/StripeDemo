@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'customers#index'
+
   resources :cards
   resources :customers
   resources :plans

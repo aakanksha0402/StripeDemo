@@ -31,25 +31,27 @@
     <%= form.collection_select :plan_id, Plan.all, :id, :name, {}, {} %>
   </div>
 
-  <div class="field">
-    <%= form.label :card_number %>
-    <%= form.text_field :card_number %>
-  </div>
+  <% if @customer.new? %>
+    <div class="field">
+      <%= form.label :card_number %>
+      <%= form.text_field :card_number %>
+    </div>
 
-  <div class="field">
-    <%= form.label :cvc %>
-    <%= form.text_field :cvc %>
-  </div>
+    <div class="field">
+      <%= form.label :cvc %>
+      <%= form.text_field :cvc %>
+    </div>
 
-  <div class="field">
-    <%= form.label :exp_month %>
-    <%= form.text_field :exp_month %>
-  </div>
+    <div class="field">
+      <%= form.label :exp_month %>
+      <%= form.text_field :exp_month %>
+    </div>
 
-  <div class="field">
-    <%= form.label :exp_year %>
-    <%= form.text_field :exp_year %>
-  </div>
+    <div class="field">
+      <%= form.label :exp_year %>
+      <%= form.text_field :exp_year %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
