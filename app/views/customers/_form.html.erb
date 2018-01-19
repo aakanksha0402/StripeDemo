@@ -1,0 +1,57 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, id: :customer_first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, id: :customer_last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :customer_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plan_id %>
+    <%= form.collection_select :plan_id, Plan.all, :id, :name, {}, {} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :card_number %>
+    <%= form.text_field :card_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cvc %>
+    <%= form.text_field :cvc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exp_month %>
+    <%= form.text_field :exp_month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exp_year %>
+    <%= form.text_field :exp_year %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

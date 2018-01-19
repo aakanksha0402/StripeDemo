@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @card.customer %>
+</p>
+
+<p>
+  <strong>Stripe card:</strong>
+  <%= @card.stripe_card_id %>
+</p>
+
+<p>
+  <strong>Deafult:</strong>
+  <%= @card.deafult %>
+</p>
+
+<p>
+  <strong>Last 4:</strong>
+  <%= @card.last_4 %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @card.brand %>
+</p>
+
+<p>
+  <strong>Exp month:</strong>
+  <%= @card.exp_month %>
+</p>
+
+<p>
+  <strong>Exp year:</strong>
+  <%= @card.exp_year %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

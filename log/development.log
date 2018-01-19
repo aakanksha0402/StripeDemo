@@ -1,0 +1,498 @@
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-01-17 13:06:48.447597"], ["updated_at", "2018-01-17 13:06:48.447597"]]
+  [1m[35m (15.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePlans (20180119054452)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (287.1ms)[0m  [1m[35mCREATE TABLE "plans" ("id" bigserial primary key, "name" character varying, "amount" character varying, "stripe_plan_id" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180119054452"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (12.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-01-19 11:29:45 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/c168/.rvm/gems/ruby-2.4.1@stripe-demo/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/c168/.rvm/gems/ruby-2.4.1@stripe-demo/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (3.0ms)
+Completed 200 OK in 26ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 11:29:48 +0530
+Processing by PlansController#index as HTML
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (25.6ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (41.2ms)
+Completed 200 OK in 813ms (Views: 773.4ms | ActiveRecord: 33.4ms)
+
+
+Started GET "/plans/new" for 127.0.0.1 at 2018-01-19 11:29:51 +0530
+Processing by PlansController#new as HTML
+  Rendering plans/new.html.erb within layouts/application
+  Rendered plans/_form.html.erb (93.0ms)
+  Rendered plans/new.html.erb within layouts/application (96.0ms)
+Completed 200 OK in 139ms (Views: 112.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 11:29:59 +0530
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 11:29:59 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (34.1ms)[0m  [1m[32mINSERT INTO "plans" ("name", "amount", "stripe_plan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Basic Plan"], ["amount", "5"], ["stripe_plan_id", "basic_search_plan"], ["created_at", "2018-01-19 06:10:50.030571"], ["updated_at", "2018-01-19 06:10:50.030571"]]
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPlan Load (0.4ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" ORDER BY "plans"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePlans (20180119054452)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (126.1ms)[0m  [1m[35mDROP TABLE "plans"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20180119054452"]]
+  [1m[35m (82.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePlans (20180119061804)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (69.8ms)[0m  [1m[35mCREATE TABLE "plans" ("id" bigserial primary key, "name" character varying, "amount" character varying, "interval" character varying, "desired_plan_id" character varying, "stripe_plan_id" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180119061804"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 11:52:57 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 11:52:57 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+Started GET "/plans/new" for 127.0.0.1 at 2018-01-19 11:53:05 +0530
+Processing by PlansController#new as HTML
+  Rendering plans/new.html.erb within layouts/application
+  Rendered plans/_form.html.erb (42.7ms)
+  Rendered plans/new.html.erb within layouts/application (45.7ms)
+Completed 200 OK in 465ms (Views: 421.1ms | ActiveRecord: 11.0ms)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" ORDER BY "plans"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPlan Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "plans" LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "plans" ("name", "amount", "interval", "stripe_plan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Basic Plan"], ["amount", "5"], ["interval", "month"], ["stripe_plan_id", "plan_CADmGv0eiYUUCR"], ["created_at", "2018-01-19 06:26:33.879695"], ["updated_at", "2018-01-19 06:26:33.879695"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" ORDER BY "plans"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 11:56:50 +0530
+Processing by PlansController#index as HTML
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 11:57:00 +0530
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (0.5ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 43ms (Views: 33.0ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 11:57:00 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 11:57:00 +0530
+Processing by PlansController#index as HTML
+Subscription class not found: "RoomChannel"
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (0.5ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 43ms (Views: 37.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/plans/1" for 127.0.0.1 at 2018-01-19 11:57:03 +0530
+Processing by PlansController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlan Load (0.4ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering plans/show.html.erb within layouts/application
+  Rendered plans/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 59ms (Views: 18.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/plans/1/edit" for 127.0.0.1 at 2018-01-19 11:57:04 +0530
+Processing by PlansController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering plans/edit.html.erb within layouts/application
+  Rendered plans/_form.html.erb (2.4ms)
+  Rendered plans/edit.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 28ms (Views: 21.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 11:57:05 +0530
+Processing by PlansController#index as HTML
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 28ms (Views: 22.7ms | ActiveRecord: 0.2ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCustomers (20180119062758)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "customers" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "plan_id" character varying, "stripe_customer_id" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180119062758"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCustomers (20180119062758)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP TABLE "customers"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20180119062758"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCustomers (20180119062852)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (64.3ms)[0m  [1m[35mCREATE TABLE "customers" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "email" character varying, "plan_id" bigint, "stripe_customer_id" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_3ba19aee6a"
+FOREIGN KEY ("plan_id")
+  REFERENCES "plans" ("id")
+)[0m
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE  INDEX  "index_customers_on_plan_id" ON "customers"  ("plan_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180119062852"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCards (20180119062959)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2577517832448093360)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCards (20180119062959)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (39.7ms)[0m  [1m[35mCREATE TABLE "cards" ("id" bigserial primary key, "customer_id" bigint, "stripe_card_id" character varying, "default_card" boolean DEFAULT 'f', "last_4" character varying, "brand" character varying, "exp_month" character varying, "exp_year" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_778182f614"
+FOREIGN KEY ("customer_id")
+  REFERENCES "customers" ("id")
+)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_cards_on_customer_id" ON "cards"  ("customer_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180119062959"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2577517832448093360)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/customers" for 127.0.0.1 at 2018-01-19 12:11:55 +0530
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  Rendered customers/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 184ms (Views: 162.8ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2018-01-19 12:11:57 +0530
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (4.3ms)
+  Rendered customers/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 44ms (Views: 29.5ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 12:12:05 +0530
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 12:12:05 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+Started GET "/customers/new" for 127.0.0.1 at 2018-01-19 12:17:13 +0530
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (4.7ms)
+  Rendered customers/new.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 46ms (Views: 29.0ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 12:17:22 +0530
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 12:17:22 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 12:17:51 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XmZkNgIiUgOsN8PgSe8fc+80LNnbvhZvhMHa4Lw7Agcj5FEAGY3dh3PP7A8ec5N+nwpxBOUIwIWgLWEXMyYJiQ==", "customer"=>{"first_name"=>"Aakanksha", "last_name"=>"Sharma", "email"=>"aakanksha0402@gmail.com", "plan_id"=>"1", "stripe_customer_id"=>"", "card_number"=>"4242424242424242", "cvc"=>"123", "exp_month"=>"12", "exp_year"=>"2019"}, "commit"=>"Create Customer"}
+Unpermitted parameters: :plan_id, :stripe_customer_id
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (5.0ms)
+  Rendered customers/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 65ms (Views: 31.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 12:18:00 +0530
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 12:18:00 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" ORDER BY "plans"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 12:18:28 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dH0/XrcxhhVwsU651wzibsJIMwtRbrS6gtdFs+4IBEQJ/wporJ4Jka9JYVaAkG5jsnZu1m/YYlCmO/5EYRUPyg==", "customer"=>{"first_name"=>"Aakanksha", "last_name"=>"Sharma", "email"=>"aakanksha0402@gmail.com", "plan_id"=>"", "stripe_customer_id"=>"", "card_number"=>"4242424242424242", "cvc"=>"123", "exp_month"=>"12", "exp_year"=>"2019"}, "commit"=>"Create Customer"}
+Unpermitted parameters: :plan_id, :stripe_customer_id
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (4.4ms)
+  Rendered customers/new.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 36ms (Views: 32.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 12:18:42 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TL78tNRqbdSbYDxPQ2SfRMzHio6TwbY4EdcZPA4IKYwxPMmCz8XiUESYE6AU+BNJvPnXU613YNI1O6LLgRUiAg==", "customer"=>{"first_name"=>"Aakanksha", "last_name"=>"Sharma", "email"=>"aakanksha0402@gmail.com", "card_number"=>"4242424242424242", "cvc"=>"123", "exp_month"=>"12", "exp_year"=>"2019"}, "commit"=>"Create Customer"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "customers" ("first_name", "last_name", "email", "stripe_customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["first_name", "Aakanksha"], ["last_name", "Sharma"], ["email", "aakanksha0402@gmail.com"], ["stripe_customer_id", "cus_CAE8ubNhJXX0zW"], ["created_at", "2018-01-19 06:48:45.596560"], ["updated_at", "2018-01-19 06:48:45.596560"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/customers/1
+Completed 302 Found in 3170ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/customers/1" for 127.0.0.1 at 2018-01-19 12:18:45 +0530
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering customers/show.html.erb within layouts/application
+  Rendered customers/show.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 36ms (Views: 31.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 12:18:51 +0530
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 12:18:51 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+Started GET "/cable" for 127.0.0.1 at 2018-01-19 12:51:57 +0530
+  [1m[35m (41.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 12:51:57 +0530
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Subscription class not found: "RoomChannel"
+Finished "/cable/" [WebSocket] for 127.0.0.1 at 2018-01-19 14:19:16 +0530
+Started GET "/" for 127.0.0.1 at 2018-01-19 15:33:26 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/c168/.rvm/gems/ruby-2.4.1@stripe-demo/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/c168/.rvm/gems/ruby-2.4.1@stripe-demo/gems/railties-5.1.4/lib/rails/templates/rails/welcome/index.html.erb (3.1ms)
+Completed 200 OK in 53ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/customers" for 127.0.0.1 at 2018-01-19 15:33:32 +0530
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.6ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  Rendered customers/index.html.erb within layouts/application (46.4ms)
+Completed 200 OK in 483ms (Views: 440.1ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/customers/new" for 127.0.0.1 at 2018-01-19 15:33:52 +0530
+Processing by CustomersController#new as HTML
+  Rendering customers/new.html.erb within layouts/application
+  Rendered customers/_form.html.erb (79.9ms)
+  Rendered customers/new.html.erb within layouts/application (84.4ms)
+Completed 200 OK in 122ms (Views: 108.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 15:35:23 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pxD7wiv7OuTuP1Q3BZuQgGmVIbbU2wYFf1bdAGlHAyYBJXxKHZmJZY1wwMdoBA3RHIkTe2N5wXskYil9eoYs0A==", "customer"=>{"first_name"=>"Vishal", "last_name"=>"Malukani", "email"=>"vma@narola.email", "card_number"=>"[FILTERED]", "cvc"=>"[FILTERED]", "exp_month"=>"[FILTERED]", "exp_year"=>"[FILTERED]"}, "commit"=>"Create Customer"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  [1m[36mPlan Load (0.8ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered customers/_form.html.erb (26.4ms)
+  Rendered customers/new.html.erb within layouts/application (28.7ms)
+Completed 200 OK in 71ms (Views: 47.9ms | ActiveRecord: 7.8ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 15:35:43 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nHo7gqXJcUTlPnZ4XOR/r+bBPHv8U5xJKvnbUYPo2fDh+A60vmb+wDrGWZcLePOilv9hpsLlSqMOFWCmDPXSfg==", "customer"=>{"first_name"=>"Vishal", "last_name"=>"Malukani", "email"=>"vma@narola.email", "plan_id"=>"Basic Plan", "card_number"=>"[FILTERED]", "cvc"=>"[FILTERED]", "exp_month"=>"[FILTERED]", "exp_year"=>"[FILTERED]"}, "commit"=>"Create Customer"}
+Unpermitted parameter: :plan_id
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  [1m[36mPlan Load (0.5ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered customers/_form.html.erb (6.5ms)
+  Rendered customers/new.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 40ms (Views: 34.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 15:35:57 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y+zbCsxOOF56XPey7P5APly7sdTgLhiwJL3kcKUaz0q2bu481+G32qWk2F27YswzLIXsCd6YzloAUV+HKgfExA==", "customer"=>{"first_name"=>"Vishal", "last_name"=>"Malukani", "email"=>"vma@narola.email", "plan_id"=>"Basic Plan", "card_number"=>"[FILTERED]", "cvc"=>"[FILTERED]", "exp_month"=>"[FILTERED]", "exp_year"=>"[FILTERED]"}, "commit"=>"Create Customer"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlan Load (0.5ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  [1m[36mPlan Load (0.5ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered customers/_form.html.erb (15.5ms)
+  Rendered customers/new.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 88ms (Views: 41.5ms | ActiveRecord: 8.1ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 15:36:52 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"c6zWMPUbxyMmMpAV0UW1Q4RrMHQKmWClebcXQTbJoeQOLuMG7rRIp/nKv/qG2TlO9FVtqTQvtk9dW6y2udSqag==", "customer"=>{"first_name"=>"Vishal", "last_name"=>"Malukani", "email"=>"vma@narola.email", "plan_id"=>"Basic Plan", "card_number"=>"[FILTERED]", "cvc"=>"[FILTERED]", "exp_month"=>"[FILTERED]", "exp_year"=>"[FILTERED]"}, "commit"=>"Create Customer"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  [1m[36mPlan Load (0.4ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered customers/_form.html.erb (5.6ms)
+  Rendered customers/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 49ms (Views: 42.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 15:36:55 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kByM4DFOtZJxCwLegHh7BNGghoUjmbqV1gpB7F4qvcntnrnWKuE6Fq7zLTHX5PcJoZ7bWB0vbH/y5vob0Te2Rw==", "customer"=>{"first_name"=>"Vishal", "last_name"=>"Malukani", "email"=>"vma@narola.email", "plan_id"=>"1", "card_number"=>"[FILTERED]", "cvc"=>"[FILTERED]", "exp_month"=>"[FILTERED]", "exp_year"=>"[FILTERED]"}, "commit"=>"Create Customer"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering customers/new.html.erb within layouts/application
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered customers/_form.html.erb (5.3ms)
+  Rendered customers/new.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 1680ms (Views: 30.3ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/customers" for 127.0.0.1 at 2018-01-19 15:37:07 +0530
+Processing by CustomersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qEo20xs2FwrwFq4INEMkURXS21Q2xCe3Ma3oMRfip4LVyAPlAJmYji/ugedj36hcZeyGiQhy8V0VQVPGmP+sDA==", "customer"=>{"first_name"=>"Vishal", "last_name"=>"Malukani", "email"=>"vma@narola.email", "plan_id"=>"1", "card_number"=>"[FILTERED]", "cvc"=>"[FILTERED]", "exp_month"=>"[FILTERED]", "exp_year"=>"[FILTERED]"}, "commit"=>"Create Customer"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "customers" ("first_name", "last_name", "email", "plan_id", "stripe_customer_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["first_name", "Vishal"], ["last_name", "Malukani"], ["email", "vma@narola.email"], ["plan_id", 1], ["stripe_customer_id", "cus_CAHKuLmuVaRw6y"], ["created_at", "2018-01-19 10:07:12.711930"], ["updated_at", "2018-01-19 10:07:12.711930"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/customers/2
+Completed 302 Found in 5392ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/customers/2" for 127.0.0.1 at 2018-01-19 15:37:12 +0530
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCustomer Load (0.4ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering customers/show.html.erb within layouts/application
+  [1m[36mPlan Load (0.4ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered customers/show.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 53ms (Views: 27.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/customers/2" for 127.0.0.1 at 2018-01-19 15:39:52 +0530
+Processing by CustomersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering customers/show.html.erb within layouts/application
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered customers/show.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 49ms (Views: 34.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/customers" for 127.0.0.1 at 2018-01-19 15:40:16 +0530
+Processing by CustomersController#index as HTML
+  Rendering customers/index.html.erb within layouts/application
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT "customers".* FROM "customers"[0m
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered customers/index.html.erb within layouts/application (23.5ms)
+Completed 200 OK in 51ms (Views: 45.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 15:40:29 +0530
+Processing by PlansController#index as HTML
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 30ms (Views: 27.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/plans/1/edit" for 127.0.0.1 at 2018-01-19 15:40:31 +0530
+Processing by PlansController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlan Load (0.4ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering plans/edit.html.erb within layouts/application
+  Rendered plans/_form.html.erb (3.3ms)
+  Rendered plans/edit.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 48ms (Views: 30.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 15:40:33 +0530
+Processing by PlansController#index as HTML
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 31ms (Views: 26.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/plans/1" for 127.0.0.1 at 2018-01-19 15:40:34 +0530
+Processing by PlansController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT  "plans".* FROM "plans" WHERE "plans"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering plans/show.html.erb within layouts/application
+  Rendered plans/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 49ms (Views: 28.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/plans" for 127.0.0.1 at 2018-01-19 15:40:37 +0530
+Processing by PlansController#index as HTML
+  Rendering plans/index.html.erb within layouts/application
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  Rendered plans/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 35ms (Views: 27.5ms | ActiveRecord: 0.2ms)
+
+

@@ -1,0 +1,52 @@
+<%= form_with(model: card, local: true) do |form| %>
+  <% if card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+      <% card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :customer_id %>
+    <%= form.text_field :customer_id, id: :card_customer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stripe_card_id %>
+    <%= form.text_field :stripe_card_id, id: :card_stripe_card_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deafult %>
+    <%= form.text_field :deafult, id: :card_deafult %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_4 %>
+    <%= form.text_field :last_4, id: :card_last_4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brand %>
+    <%= form.text_field :brand, id: :card_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exp_month %>
+    <%= form.text_field :exp_month, id: :card_exp_month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exp_year %>
+    <%= form.text_field :exp_year, id: :card_exp_year %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
